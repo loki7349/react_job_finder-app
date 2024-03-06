@@ -1,1 +1,1 @@
-# react_todo_app
+# react_job_finder_app
