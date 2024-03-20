@@ -1,5 +1,7 @@
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/style.css"
+import { HiOutlineHeart } from "react-icons/hi"
+import { HiStar } from "react-icons/hi" 
 
 const responsive = {
     superLargeDesktop: {
@@ -22,20 +24,60 @@ const responsive = {
 }
 
 function Top_Company(){
+    const Jobs=({type, img, title, color, bg_color})=>{
+        return(
+            <div className="shadow ig:w-[95%] mt-12">
+                <div className="bg-white rounded-t-md px-6 py-8 flex flex-col items-center">
+                    <span className="flex items-center justify-between w-full"> 
+                        <button className="rounded-full bg-transparent text-lg text-black px-8 py-2 outline-none border-none hoverBtn" style={{border: `3px solid ${color}`}}>{type}</button>
+                        <HiOutlineHeart className="text-3xl"/>
+                    </span>
+                    <img src={img} alt="" className="w-28 h-28 rounded-full my-8"/>
+                </div>
+                <div className="rounded-b-md px-6 py-8" style={{backgroundColor: `${bg_color}`}}>
+                    <p className="text-2xl font-semibold">{title}</p>
+                    <p className="py-2 text-lg">803 92th Sector Gurgaon, Haryana</p>
+                    <div className="pb-4">{[...Array(5)].map((_, index) =>{
+                        return <Histar key={index} className="text-[#ffcc02] text-2xl" />;
+                    })}
+                    </div>
+                    <div className="p-2 border border-solid border-[#e2e4e7] rounded-md flex justify-between text-sm">
+                        <p>Salary</p>
+                        <p style={{color: `${color}`}}>Rs. 3,457,000</p>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return(
-        <div>
-            <div>
-                <div>
-                    <h2>Top Company Registered</h2>
-                    <span>
-                        <button>Browse Jobs</button>
-                        <button>See all Companies</button>
+        <div className="bg=[#fafbfc]">
+            <div className="container mx-auto px-6 py-24">
+                <div className="md:flex items-center justify-between">
+                    <h2 className="xl:text-5xl lg:text-3xl text-2xl font-semibold">Top Company Registered</h2>
+                    <span className="md:flex gap-x-4">
+                        <button className="rounded-full md:my-0 my-4 bg-primary text-lg text-white font-bold px-8 py-3 outline-none border-none hoverBtn">Browse Jobs</button>
+                        <button className="rounded-full bg-transparent border border-solid border-[#e2e4e7] text-lg text-black font-bold px-8 py-3 outline-none shoadow hoverBtn">See all Companies</button>
                     </span>
                 </div>
-                <p>Know your worth and find the job that qualify your life</p>
+                <p className="text-2xl mt-4 font-light">Know your worth and find the job that qualify your life</p>
                 <div>
                     <Carousel
-                    ></Carousel>
+                        swipeable={true}
+                        draggable={false}
+                        responsive={responsive}
+                        ssr={true}
+                        infinite
+                        showDots
+                        autoPlay={true}
+                        keyBoardControl={true}
+                        customeTransition="all .5"
+                        transitionDuration={500}
+                    >
+                    <Jobs bg_color="#f4f4ff" color="#4b4efc" img="/unnamed.jpeg" title="Software Development Engineer" type="Full Time"/>
+                    <Jobs bg_color="#fffbf2" color="#fec220" img="/0bf89900-edc9-4c98-b1e6-d4bd7b68a65a.jpg" title="Front-End Developer" type="Internship"/>
+                    <Jobs bg_color="#fbf2f6" color="#c72b66" img="/Spotify_FTR_Header-1920x733.png" title="UX/UI Designer" type="Full Time"/>
+                    <Jobs bg_color="#e8f3ea" color="#349c30" img="/download.png" title="Product Design" type="Full Time"/>
+                    </Carousel>
                 </div>
             </div>
         </div>
